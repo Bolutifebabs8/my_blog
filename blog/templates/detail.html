@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %}Blog - {{ object.title }}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    {% include 'list-inline.html' with blog_post=object detail=True %}
+
+    {% include 'comment.html' with blog_post=object %}
+
+    {% if request.user.is_authenticated %}
+        {% if object.author == user %}
+            <div class="col-12">
+                <a href="{{ object.get_edit_url }}">Edit</a>
+                <a href="{{ object.get_delete_url }}">Delete</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

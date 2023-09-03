@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block header %}Search - {{ query }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-8 mx-auto">
+            
+            {% if query %}
+                <p class="lead">Search Results - {{ query }}</p>
+            {% endif %}
+
+            {% for a in blog_list %}
+                {% include 'list-inline.html' with blog_post=a truncate=True %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
